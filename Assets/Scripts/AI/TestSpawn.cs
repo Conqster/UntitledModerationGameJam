@@ -32,6 +32,9 @@ public class TestSpawn : MonoBehaviour
             if (spawnObj.TryGetComponent<NPC>(out NPC npc))
                 npc.UpdateRowdiness(rate);
 
+            if (NPC_BarManager.Instance != null)
+                NPC_BarManager.Instance.AddToCollection(npc);
+
             m_SpawnCount++;
             yield return new WaitForSeconds(m_SpawnInterval);
         }

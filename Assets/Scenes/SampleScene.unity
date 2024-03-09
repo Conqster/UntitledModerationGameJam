@@ -154,6 +154,37 @@ Transform:
   m_Father: {fileID: 1099034899}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &617142383
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 617142384}
+  m_Layer: 0
+  m_Name: QueneMainEntrance
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &617142384
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 617142383}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 2.15, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1099034899}
+  m_RootOrder: 4
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &705507993
 GameObject:
   m_ObjectHideFlags: 0
@@ -363,7 +394,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1099034899}
   m_Layer: 0
-  m_Name: AI Location
+  m_Name: AI Management
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -384,6 +415,8 @@ Transform:
   - {fileID: 1250531713}
   - {fileID: 355083126}
   - {fileID: 1594778248}
+  - {fileID: 1535759034}
+  - {fileID: 617142384}
   m_Father: {fileID: 0}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -500,6 +533,57 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1535759033
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1535759034}
+  - component: {fileID: 1535759035}
+  m_Layer: 0
+  m_Name: NPC_BarManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1535759034
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1535759033}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -25.250729, y: -2.371981, z: 16.841862}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1099034899}
+  m_RootOrder: 3
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1535759035
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1535759033}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0cd927e57405aee4e94a91fbab056ab2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_AllNPCs: []
+  m_NPCWaitInQuene: []
+  m_numOfQueneLocationSlot: 5
+  queneMainEntrance: {fileID: 617142384}
+  queneDirection: {x: 0, y: 0, z: 1}
+  queneOffset: 1.68
+  alwayUseLastQuene: 1
 --- !u!1 &1594778247
 GameObject:
   m_ObjectHideFlags: 0
@@ -660,8 +744,16 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1594778248}
     - target: {fileID: 2561344526488795239, guid: 9f1e5409b66fc7d49824ee6cf8f7b148, type: 3}
+      propertyPath: m_brainInput.rowdinessBehaviour
+      value: 0.699
+      objectReference: {fileID: 0}
+    - target: {fileID: 2561344526488795239, guid: 9f1e5409b66fc7d49824ee6cf8f7b148, type: 3}
       propertyPath: m_brainInput.barEntranceLocation
       value: 
       objectReference: {fileID: 1250531713}
+    - target: {fileID: 2561344526488795239, guid: 9f1e5409b66fc7d49824ee6cf8f7b148, type: 3}
+      propertyPath: m_brainInput.reachedEntranceTreashold
+      value: 2.22
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9f1e5409b66fc7d49824ee6cf8f7b148, type: 3}
