@@ -5,6 +5,9 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "ID", menuName = "New Id")]
 public class ID : ScriptableObject
 {
-    int Ea;
+   public  string ExpiryDate;
+   public Sprite image;
+   public string DateOfBirth;
+     
 
 }
