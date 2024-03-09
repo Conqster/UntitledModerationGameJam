@@ -8,12 +8,16 @@ using UnityEngine.UI;
 public class UIManager : MonoBehaviour
 {
     #region Variables
-    [SerializeField] GameObject currentActiveObject;
+    [SerializeField] protected GameObject currentActiveObject;
+    [SerializeField] protected GameObject rootMenu;
     [Header("Audio")]
-    [SerializeField] Slider musicSlider;
-    [SerializeField] Slider sfxSlider;
-    [SerializeField] Toggle musicToggle;
-    [SerializeField] Toggle sfxToggle;
+    [SerializeField] GameObject musicToggleAndSlider;
+    [SerializeField] GameObject sfxToggleAndSlider;
+
+    Slider musicSlider;
+    Slider sfxSlider;
+    Toggle musicToggle;
+    Toggle sfxToggle;
 
     // Events
     public static event Action<float, float> OnAudioUpdatedEvent;
@@ -21,7 +25,8 @@ public class UIManager : MonoBehaviour
     #endregion
     public void ChangeObject(GameObject objectToActivate)
     {
-        currentActiveObject.SetActive(false);
+        if(currentActiveObject != null)
+            currentActiveObject.SetActive(false);
 
         currentActiveObject = objectToActivate;
 
@@ -33,9 +38,25 @@ public class UIManager : MonoBehaviour
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
     }
 
-    private void Start()
+    protected virtual void Start()
     {
+        musicSlider = musicToggleAndSlider.GetComponentInChildren<Slider>();
+        musicToggle = musicToggleAndSlider.GetComponentInChildren<Toggle>();
+
+        sfxSlider = sfxToggleAndSlider.GetComponentInChildren <Slider>();
+        sfxToggle = sfxToggleAndSlider.GetComponentInChildren <Toggle>();
         UpdateAudio();
+    }
+
+    protected virtual void Update()
+    {
+        if(Input.GetKeyDown(KeyCode.Escape))
+        {
+            if(currentActiveObject != rootMenu)
+            {
+                ChangeObject(rootMenu);
+            }
+        }
     }
 
     public void UpdateAudio()
