@@ -8,20 +8,31 @@ public class SwitchMode : MonoBehaviour
     // Start is called before the first frame update
     [SerializeField] private GameObject Cam1;
     [SerializeField] private Camera Cam2;
-    [SerializeField] private Camera Cam3;
+    //[SerializeField] private Camera Cam3;
     [SerializeField] private GameObject Id;
     private void Start()
     {
         Cam2.gameObject.SetActive(false);
-        Cam3.gameObject.SetActive(false);
+        //Cam3.gameObject.SetActive(false);
+        Id.gameObject.SetActive(false);
     }
-    private void OnTriggerEnter(Collider other)
+    private void OnTriggerStay(Collider other)
     {
         if(Cam1.activeInHierarchy == true)
         {
-            Cam1.gameObject.SetActive(false);
-            Cam2.gameObject.SetActive(true);
-        }
+            if(Input.GetKeyDown(KeyCode.E)) {
+
+                Cam1.gameObject.SetActive(false);
+                Cam2.gameObject.SetActive(true);
+                Id.gameObject.SetActive(true);
+                Cursor.lockState = CursorLockMode.None;
+                Cursor.visible = true;
+
+
+            }
+            
+            
+        } 
     }
 
     private void Update()
@@ -32,6 +43,10 @@ public class SwitchMode : MonoBehaviour
     {
         Cam1.gameObject.SetActive(true);
         Cam2.gameObject.SetActive(false);
+        Id.gameObject.SetActive(false);
+        Cursor.lockState = CursorLockMode.Confined;
+        Cursor.lockState = CursorLockMode.Locked;
+        Cursor.visible = false;
 
     }
 
