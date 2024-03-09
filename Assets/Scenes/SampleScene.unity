@@ -430,6 +430,7 @@ RectTransform:
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &604797431
+--- !u!1 &617142383
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -518,6 +519,9 @@ GameObject:
   - component: {fileID: 608290981}
   m_Layer: 0
   m_Name: GameManager
+  - component: {fileID: 617142384}
+  m_Layer: 0
+  m_Name: QueneMainEntrance
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -537,6 +541,7 @@ BoxCollider:
   m_Size: {x: 1.2679958, y: 5.2091846, z: 5.2578926}
   m_Center: {x: 14.624452, y: 5.3312235, z: -11.2612915}
 --- !u!4 &608290980
+--- !u!4 &617142384
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -568,6 +573,15 @@ MonoBehaviour:
   Cam2: {fileID: 1400158105}
   Cam3: {fileID: 0}
   Id: {fileID: 1825711540}
+  m_GameObject: {fileID: 617142383}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 2.15, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1099034899}
+  m_RootOrder: 4
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &705507993
 GameObject:
   m_ObjectHideFlags: 0
@@ -982,6 +996,7 @@ GameObject:
   - component: {fileID: 1241157988}
   m_Layer: 0
   m_Name: rt
+  m_Name: AI Management
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1002,6 +1017,8 @@ Transform:
   - {fileID: 1250531713}
   - {fileID: 1594778248}
   - {fileID: 1006475592}
+  - {fileID: 1535759034}
+  - {fileID: 617142384}
   m_Father: {fileID: 0}
   m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -1284,6 +1301,7 @@ Transform:
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1400158102
+--- !u!1 &1535759033
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -1296,12 +1314,17 @@ GameObject:
   - component: {fileID: 1400158104}
   m_Layer: 0
   m_Name: ID Cam
+  - component: {fileID: 1535759034}
+  - component: {fileID: 1535759035}
+  m_Layer: 0
+  m_Name: NPC_BarManager
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
 --- !u!4 &1400158103
+--- !u!4 &1535759034
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -1309,7 +1332,6 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1400158102}
   m_LocalRotation: {x: -0, y: 0.2358983, z: -0, w: 0.97177774}
-  m_LocalPosition: {x: 15.595693, y: 6.687259, z: -11.561603}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1411,9 +1433,17 @@ RectTransform:
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1495649544
+  m_GameObject: {fileID: 1535759033}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1099034899}
+  m_RootOrder: 3
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1535759035
 MonoBehaviour:
   m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1495649542}
@@ -1587,6 +1617,19 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1579796047}
   m_CullTransparentMesh: 1
+  m_GameObject: {fileID: 1535759033}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0cd927e57405aee4e94a91fbab056ab2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_AllNPCs: []
+  m_NPCWaitInQuene: []
+  m_numOfQueneLocationSlot: 5
+  queneMainEntrance: {fileID: 617142384}
+  queneDirection: {x: 0, y: 0, z: 1}
+  queneOffset: 1.68
+  alwayUseLastQuene: 1
 --- !u!1 &1594778247
 GameObject:
   m_ObjectHideFlags: 0
@@ -2273,8 +2316,16 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1594778248}
     - target: {fileID: 2561344526488795239, guid: 9f1e5409b66fc7d49824ee6cf8f7b148, type: 3}
+      propertyPath: m_brainInput.rowdinessBehaviour
+      value: 0.699
+      objectReference: {fileID: 0}
+    - target: {fileID: 2561344526488795239, guid: 9f1e5409b66fc7d49824ee6cf8f7b148, type: 3}
       propertyPath: m_brainInput.barEntranceLocation
       value: 
       objectReference: {fileID: 1250531713}
+    - target: {fileID: 2561344526488795239, guid: 9f1e5409b66fc7d49824ee6cf8f7b148, type: 3}
+      propertyPath: m_brainInput.reachedEntranceTreashold
+      value: 2.22
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9f1e5409b66fc7d49824ee6cf8f7b148, type: 3}

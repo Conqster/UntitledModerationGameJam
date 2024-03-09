@@ -267,12 +267,13 @@ MonoBehaviour:
   m_brainInput:
     navAgent: {fileID: 2561344526488795238}
     self: {fileID: 2561344526488795232}
+    npc: {fileID: 0}
     barEntranceLocation: {fileID: 0}
     barCounterLocation: {fileID: 0}
     barDanceLocation: {fileID: 0}
     rowdinessBehaviour: 0.675
     waitDuration: 2
-    reachedEntranceTreashold: 3.18
+    reachedEntranceTreashold: 2
     StopOnReachTreshold: 1
   m_brainOutput:
     barAccessState: 0

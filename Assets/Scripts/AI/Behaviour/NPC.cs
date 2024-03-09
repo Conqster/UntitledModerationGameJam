@@ -3,12 +3,21 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 using UnityEditor;
+using static UnityEditor.FilePathAttribute;
 
 
 [RequireComponent(typeof(NavMeshAgent))]
 public class NPC : MonoBehaviour
 {
     private StateMachine NPC_SM;
+    private uint id = 0;
+    private NavMeshAgent agent;
+
+    public uint Id
+    {
+        get { return id; }
+        set { id = value; }
+    }
 
     [SerializeField] private SM_BrainInput m_brainInput;
     [SerializeField] private SM_BrainOutput m_brainOutput;
@@ -21,6 +30,8 @@ public class NPC : MonoBehaviour
     void Start()
     {
         m_brainInput.navAgent = GetComponent<NavMeshAgent>();
+        agent = GetComponent<NavMeshAgent>();
+        m_brainInput.npc = this;
         m_brainInput.self = transform;
 
         m_brainInput.barEntranceLocation = GameObject.FindGameObjectWithTag("BarEntrance").transform;
@@ -38,8 +49,8 @@ public class NPC : MonoBehaviour
 
 
         //Test
-        if (Input.GetKeyDown(KeyCode.Space))
-            GrantAccessToBar();
+        //if (Input.GetKeyDown(KeyCode.Space))
+        //    GrantAccessToBar();
     }
 
 
@@ -50,6 +61,7 @@ public class NPC : MonoBehaviour
     /// </summary>
     public void GrantAccessToBar()
     {
+        NPC_BarManager.Instance.RemoveFromQuene(this);
         NPC_SM.ChangeBarAccessState(SM_BarAccessState.Granted);
     }
 
@@ -67,6 +79,19 @@ public class NPC : MonoBehaviour
     public void UpdateRowdiness(float rate)
     {
         m_brainInput.rowdinessBehaviour = rate;
+    }
+
+    public void UpdateMoveTo(Vector3 pos)
+    {
+        if (agent.isStopped)
+            agent.isStopped = false;
+
+        agent.SetDestination(pos);
+    }
+
+    public void UpdateEntranceBasedOnQuene(Vector3 pos)
+    {
+        m_brainInput.barEntranceLocation.position = pos;    
     }
 
 

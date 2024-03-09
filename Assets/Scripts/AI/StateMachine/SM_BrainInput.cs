@@ -11,6 +11,7 @@ public class SM_BrainInput
     [Header("General")]
     [SerializeField] public NavMeshAgent navAgent;
     [SerializeField] public Transform self;
+    [SerializeField] public NPC npc;
     [SerializeField] public Transform barEntranceLocation;
     [SerializeField] public Transform barCounterLocation;
     [SerializeField] public Transform barDanceLocation;

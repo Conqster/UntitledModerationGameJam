@@ -28,6 +28,9 @@ public class SM_MoveToEntrance : StateMachine
                 sm_input.navAgent.isStopped = true;
             }
 
+            if(NPC_BarManager.Instance != null)
+                NPC_BarManager.Instance.AddToQuene(sm_input.npc);
+
             TriggerExit(new SM_Idle(sm_input, sm_output));
         }
 
