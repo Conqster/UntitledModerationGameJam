@@ -5,8 +5,8 @@ TagManager:
   serializedVersion: 2
   tags:
   - BarEntrance
-  - BarDanceFloor
   - BarCounter
+  - BarDanceFloor
   layers:
   - Default
   - TransparentFX
