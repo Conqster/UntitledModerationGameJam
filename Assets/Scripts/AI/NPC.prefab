@@ -273,7 +273,7 @@ MonoBehaviour:
     barDanceLocation: {fileID: 0}
     rowdinessBehaviour: 0.675
     waitDuration: 2
-    reachedEntranceTreashold: 2
+    reachedEntranceTreashold: 3
     StopOnReachTreshold: 1
   m_brainOutput:
     barAccessState: 0

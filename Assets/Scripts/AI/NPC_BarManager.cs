@@ -6,7 +6,7 @@ using UnityEngine;
 public class NPC_BarManager : MonoBehaviour
 {
     public static NPC_BarManager Instance;
-
+    [SerializeField] IDDisplayManager idDisplayManager;
     [SerializeField] private List<NPC> m_AllNPCs;
     [SerializeField] private List<NPC> m_NPCWaitInQuene;
     [SerializeField, Range(0, 20)] private int m_numOfQueneLocationSlot = 10;
@@ -57,6 +57,7 @@ public class NPC_BarManager : MonoBehaviour
         if (m_NPCWaitInQuene.Count > 0)
         {
             m_NPCWaitInQuene[0].GrantAccessToBar();
+            DisplayNextNPCInfoOrClear();
             UpdateNPCsPos();
         }
     }
@@ -67,11 +68,22 @@ public class NPC_BarManager : MonoBehaviour
         {
             m_NPCWaitInQuene[0].DeclineAccessToBar();
             UpdateNPCsPos();
+            DisplayNextNPCInfoOrClear();
         }
     }
 
 
-
+    private void DisplayNextNPCInfoOrClear()
+    {
+        if (m_NPCWaitInQuene.Count > 0)
+        {
+            UpdateIDCardWithNPCData(m_NPCWaitInQuene[0]);
+        }
+        else
+        {
+            idDisplayManager.ClearIDInfo();
+        }
+    }
     public void AddToCollection(NPC npc)
     {
         if(!m_AllNPCs.Contains(npc))
@@ -85,6 +97,10 @@ public class NPC_BarManager : MonoBehaviour
         {
             m_NPCWaitInQuene.Add(npc);
             LastPosQueneEntrance();
+        }
+        if (m_NPCWaitInQuene.Count == 1)
+        {
+            UpdateIDCardWithNPCData(npc);
         }
     }
 
@@ -133,7 +149,19 @@ public class NPC_BarManager : MonoBehaviour
     //{
     //    GameObject spawnObj = Instantiate(spawnObject, spawnLocation);
     //}
-
+    private void UpdateIDCardWithNPCData(NPC npc)
+    {
+        var idHolder = npc.GetComponent<IdHolder>();
+        if (idHolder != null)
+        {
+            // Set the data on the ID card
+            idDisplayManager.SetIDInfo(idHolder.image, idHolder.expiryDate, idHolder.dateOfBirth);
+        }
+        else
+        {
+            Debug.LogError("NPC does not have an IdHolder component.");
+        }
+    }
     private void UpdateNPCsPos()
     {
         if (m_NPCWaitInQuene.Count <= 0)

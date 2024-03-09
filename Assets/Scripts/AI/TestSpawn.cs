@@ -24,17 +24,20 @@ public class TestSpawn : MonoBehaviour
         while (m_SpawnCount < m_MaxSpawnCount)
         {
             GameObject spawnObj = Instantiate(m_SpawnObject, m_SpawnLocation);
-
+            spawnObj.AddComponent<IdHolder>();
             float rate = (testValue == 0) ? 1 : 0;
 
             testValue = rate;
 
             if (spawnObj.TryGetComponent<NPC>(out NPC npc))
+            {
                 npc.UpdateRowdiness(rate);
-
+                
+            }
+                
             if (NPC_BarManager.Instance != null)
                 NPC_BarManager.Instance.AddToCollection(npc);
-
+                    
             m_SpawnCount++;
             yield return new WaitForSeconds(m_SpawnInterval);
         }
