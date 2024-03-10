@@ -1996,7 +1996,7 @@ Camera:
   far clip plane: 4.25
   field of view: 60
   orthographic: 1
-  orthographic size: 1.15
+  orthographic size: 0.55
   m_Depth: 0
   m_CullingMask:
     serializedVersion: 2
@@ -2019,14 +2019,14 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 558552953}
-  m_LocalRotation: {x: -0, y: 1, z: -0, w: -0.0000007003545}
-  m_LocalPosition: {x: 3.23, y: 4.49, z: 2.83}
+  m_LocalRotation: {x: -0, y: 0.00000089406956, z: -0, w: 1}
+  m_LocalPosition: {x: 4.762, y: 4.436, z: -0.39}
   m_LocalScale: {x: 0.62877, y: 0.62877, z: 0.62877}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 7
-  m_LocalEulerAnglesHint: {x: 0, y: 180, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &558552957
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4608,7 +4608,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 2929967066456924661}
         m_TargetAssemblyTypeName: NPC_BarManager, Assembly-CSharp
         m_MethodName: DeclineAccessToFirstNPC
         m_Mode: 1
@@ -8805,7 +8805,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 2929967066456924661}
         m_TargetAssemblyTypeName: NPC_BarManager, Assembly-CSharp
         m_MethodName: GrantAccessFirstNPCInQuene
         m_Mode: 1
@@ -10689,7 +10689,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2929967064590527265}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 1.7859999, y: 0, z: 0.42199993}
+  m_LocalPosition: {x: 1.06, y: 0, z: 0.84}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -10836,7 +10836,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_SpawnObject: {fileID: 2561344526488795235, guid: 9f1e5409b66fc7d49824ee6cf8f7b148, type: 3}
   m_SpawnInterval: 2.94
-  m_MaxSpawnCount: 10
+  m_MaxSpawnCount: 8
   m_SpawnCount: 0
   m_SpawnTransform: {fileID: 2929967066163356566}
   testValue: 0
@@ -11001,7 +11001,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_AllNPCs: []
   m_NPCWaitInQuene: []
-  m_numOfQueneLocationSlot: 5
+  m_numOfQueneLocationSlot: 8
   queneMainEntrance: {fileID: 2929967064590527294}
   queneDirection: {x: 0, y: 0, z: 1}
   queneOffset: 1.68

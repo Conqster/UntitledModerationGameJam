@@ -95,15 +95,15 @@ public class IdHolder : MonoBehaviour
 
         if (capturedSprite != null)
         {
-            image = capturedSprite; // Assign the captured sprite to the 'image' field.
+            image = capturedSprite; 
             if (IDDisplayManager.Instance != null)
             {
-                // Now setting the sprite on the Image component in the IDDisplayManager
+
                 IDDisplayManager.Instance.SetIDInfo(image, expiryDate, dateOfBirth);
             }
             else
             {
-                Debug.LogError("IDDisplayManager instance not found.");
+                Debug.LogError("IDDisplayManager  not found.");
             }
         }
         else
