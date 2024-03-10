@@ -131,6 +131,7 @@ public class NPC_BarManager : MonoBehaviour
         {
             m_NPCWaitInQuene.Add(npc);
             LastPosQueneEntrance();
+            UpdateFirstNPCDisplay();
         }
     }
 
@@ -141,6 +142,7 @@ public class NPC_BarManager : MonoBehaviour
         {
             m_NPCWaitInQuene.Remove(npc);
             LastPosQueneEntrance();
+            UpdateFirstNPCDisplay();
         }
     }
 
@@ -152,11 +154,12 @@ public class NPC_BarManager : MonoBehaviour
     }
 
 
-    private void UpdateNPCsPos()
+    public void UpdateNPCsPos()
     {
+        UpdateFirstNPCDisplay();
         if (m_NPCWaitInQuene.Count <= 0)
             return;
-
+        
         for (int i = 0; i < m_NPCWaitInQuene.Count; ++i)
         {
             if (i > m_numOfQueneLocationSlot)
@@ -306,5 +309,23 @@ public class NPC_BarManager : MonoBehaviour
 
     }
 
-
+    public void UpdateFirstNPCDisplay()
+    {
+        if (m_NPCWaitInQuene.Count > 0)
+        {
+            NPC firstNPC = m_NPCWaitInQuene[0];
+            IdHolder idHolder = firstNPC.GetComponent<IdHolder>();
+            if (idHolder != null)
+            {   
+                if(idHolder.image != null)
+                // Assuming IDDisplayManager has a method to update the display
+                IDDisplayManager.Instance.SetIDInfo(idHolder.image, idHolder.expiryDate, idHolder.dateOfBirth);
+            }
+        }
+        else
+        {
+            // Clear the display if no NPCs are in the queue
+            IDDisplayManager.Instance.ClearIDInfo();
+        }
+    }
 }
