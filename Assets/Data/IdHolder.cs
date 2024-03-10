@@ -8,7 +8,7 @@ public class IdHolder : MonoBehaviour
 
    
 
-    private void Awake()
+    private void Start()
     {
         
         float rand = Random.value;
@@ -24,13 +24,14 @@ public class IdHolder : MonoBehaviour
 
     void realID()
     {
+        TakePictureOfNPC();
         // Assign real values
         expiryDate = GenerateRealExpiryDate();
         dateOfBirth = GenerateRealDateOfBirth();
 
         Debug.Log($"Real ID Created - Expiry Date: {expiryDate}, Date of Birth: {dateOfBirth}, Image will be assigned after capture");
 
-        TakePictureOfNPC();
+        
     }
 
     void fakeId()
@@ -50,7 +51,7 @@ public class IdHolder : MonoBehaviour
         StartCoroutine(IDCAM.Instance.CaptureScreenshot(transform, (capturedSprite) =>
         {
             // Now you have a sprite ready to be assigned to the canvas viewer
-            //AssignSpriteToCanvas(capturedSprite);
+            AssignSpriteToCanvas(capturedSprite);
         }));
     }
 
@@ -91,28 +92,7 @@ public class IdHolder : MonoBehaviour
 
     void AssignSpriteToCanvas(Sprite capturedSprite)
     {
-        Debug.Log($"Received sprite: {capturedSprite}");
-
-        if (capturedSprite != null)
-        {
-            image = capturedSprite;
-            // Assuming there's a way to get the NPC component or identifier from this IdHolder
-            NPC myNpc = GetComponent<NPC>(); // This is just an example. Adjust based on your actual component structure.
-            if (NPC_BarManager.Instance.IsFirstInQueue(myNpc)) // You need to implement IsFirstInQueue method.
-            {
-                if (IDDisplayManager.Instance != null)
-                {
-                    IDDisplayManager.Instance.SetIDInfo(image, expiryDate, dateOfBirth);
-                }
-                else
-                {
-                    Debug.LogError("IDDisplayManager not found.");
-                }
-            }
-        }
-        else
-        {
-            Debug.LogError("Captured sprite is null.");
-        }
+        image = capturedSprite;
+        NPC_BarManager.Instance.UpdateNPCsPos();
     }
 }

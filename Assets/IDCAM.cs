@@ -22,7 +22,8 @@ public class IDCAM : MonoBehaviour
     public IEnumerator CaptureScreenshot(Transform npcTransform, System.Action<Sprite> onCaptured)
     {
 
-        //syield return new WaitForEndOfFrame();
+        //yield return new WaitForEndOfFrame();
+        //yield return new WaitForSeconds(2   );
         Debug.Log("CaptureScreenshot coroutine started.");
 
         int width = 1024;  
