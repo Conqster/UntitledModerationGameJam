@@ -4,7 +4,10 @@ using UnityEngine;
 
 public class SM_ApproachDanceFloor : StateMachine
 {
-    
+
+    private float updateRowdinessTimer = 0.0f;
+
+
     public SM_ApproachDanceFloor(SM_BrainInput input, SM_BrainOutput output) : base(input, output)
     {
         sm_name = "Approaching Dance Floor";
@@ -14,6 +17,7 @@ public class SM_ApproachDanceFloor : StateMachine
 
     protected override void Enter()
     {
+        updateRowdinessTimer = 0.0f;
         MoveTo(sm_input.barDanceLocation.position);
         sm_dancingState = SM_DanceFloorState.Approaching;
         base.Enter();
@@ -21,6 +25,17 @@ public class SM_ApproachDanceFloor : StateMachine
 
     protected override void Update()
     {
+
+        updateRowdinessTimer += Time.deltaTime;
+
+        if(updateRowdinessTimer > 1.0f)
+        {
+            updateRowdinessTimer = 0.0f;
+            sm_input.rowdyUtility.ReduceRowdiness(ref sm_input.rowdinessBehaviour, sm_input.rowdinessTendency);
+        }
+
+        if (sm_input.rowdinessBehaviour < 0.2f)
+            TriggerExit(new SM_ApproachCounter(sm_input, sm_output));
 
         switch(sm_dancingState)
         {

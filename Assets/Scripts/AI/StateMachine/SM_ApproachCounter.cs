@@ -6,7 +6,7 @@ using UnityEngine;
 
 public class SM_ApproachCounter : StateMachine
 {
-    
+    private float incTimerLongWait = 0.0f;
     public SM_ApproachCounter(SM_BrainInput input, SM_BrainOutput output) : base(input, output)
     {
         sm_name = "Approaching Counter";
@@ -22,7 +22,15 @@ public class SM_ApproachCounter : StateMachine
     protected override void Update()
     {
 
-        switch(sm_gettingDrinkState)
+        if(incTimerLongWait > 1.0f)
+        {
+            incTimerLongWait = 0.0f;
+            sm_input.rowdyUtility.IncreaseRowdinessNotGettingDrinks(ref sm_input.rowdinessBehaviour, sm_input.rowdinessTendency);
+        }
+
+
+
+        switch (sm_gettingDrinkState)
         {
             case SM_GettingDrinkState.Neutral:
 
@@ -46,12 +54,32 @@ public class SM_ApproachCounter : StateMachine
             case SM_GettingDrinkState.HaveASlot:
 
                 if (sm_input.navAgent.remainingDistance < 0.3f)
+                {
                     sm_gettingDrinkState = SM_GettingDrinkState.WaitingForDrink;
+                }
+
+                if (sm_input.rowdinessBehaviour > 0.9f)
+                {
+                    if (NPC_BarManager.Instance != null)
+                        NPC_BarManager.Instance.RemoveServedNPC(sm_input.myDrinkSlot);
+
+                    TriggerExit(new SM_ApproachDanceFloor(sm_input, sm_output));
+                }
 
                 break;
             case SM_GettingDrinkState.WaitingForDrink:
 
-                if(Input.GetKey(KeyCode.L))
+                incTimerLongWait += Time.deltaTime;
+
+                //Rotate towards the center
+                if (NPC_BarManager.Instance != null)
+                {
+                    Vector3 target = NPC_BarManager.Instance.GetCurrentBarTenderPos;
+                    sm_input.self.LookAt(target);
+                }
+
+
+                if (sm_input.rowdinessBehaviour > 0.9f)
                 {
                     if(NPC_BarManager.Instance != null)
                         NPC_BarManager.Instance.RemoveServedNPC(sm_input.myDrinkSlot);
@@ -75,6 +103,7 @@ public class SM_ApproachCounter : StateMachine
 
     protected override void Exit()
     {
+
         sm_gettingDrinkState = SM_GettingDrinkState.Neutral;
         base.Exit();
     }

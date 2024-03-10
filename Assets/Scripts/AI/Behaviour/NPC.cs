@@ -21,6 +21,11 @@ public class NPC : MonoBehaviour
     [SerializeField] private SM_BrainInput m_brainInput;
     [SerializeField] private SM_BrainOutput m_brainOutput;
 
+    public SM_BrainInput GetBrainInput
+    {
+        get { return m_brainInput; }
+    }
+
     [Space]
     [Header("Dev Debugger")]
     [SerializeField] private StateMachineData SMData;

@@ -1877,6 +1877,37 @@ RectTransform:
   m_AnchoredPosition: {x: -92.402, y: -30.3}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!1 &450369632
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 450369633}
+  m_Layer: 0
+  m_Name: BarUtility
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &450369633
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 450369632}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -6.91, y: 0.34442282, z: 1.77}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 2929967066289668701}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &530763428
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -5917,6 +5948,37 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 1215762312223357462, guid: 35b6c861178660d4b87bbc0b77ba193c, type: 3}
   m_PrefabInstance: {fileID: 1249127431}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1299151596
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1299151597}
+  m_Layer: 0
+  m_Name: DrinkStationPlayerPointTest
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1299151597
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1299151596}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -12.956, y: 0, z: -2.15}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 2929967066289668701}
+  m_RootOrder: 6
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1322523336
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -6219,26 +6281,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 812237806}
     m_Modifications:
-    - target: {fileID: 2561344526488795239, guid: 9f1e5409b66fc7d49824ee6cf8f7b148, type: 3}
-      propertyPath: m_brainInput.barDanceLocation
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 2561344526488795239, guid: 9f1e5409b66fc7d49824ee6cf8f7b148, type: 3}
-      propertyPath: m_brainInput.barCounterLocation
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 2561344526488795239, guid: 9f1e5409b66fc7d49824ee6cf8f7b148, type: 3}
-      propertyPath: m_brainInput.rowdinessBehaviour
-      value: 0.699
-      objectReference: {fileID: 0}
-    - target: {fileID: 2561344526488795239, guid: 9f1e5409b66fc7d49824ee6cf8f7b148, type: 3}
-      propertyPath: m_brainInput.barEntranceLocation
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 2561344526488795239, guid: 9f1e5409b66fc7d49824ee6cf8f7b148, type: 3}
-      propertyPath: m_brainInput.reachedEntranceTreashold
-      value: 2.22
-      objectReference: {fileID: 0}
     - target: {fileID: 258928088929702005, guid: 4eb6688f6adac5945a058713028882de, type: 3}
       propertyPath: m_Name
       value: Diesel (7)
@@ -6298,6 +6340,26 @@ PrefabInstance:
     - target: {fileID: 6121741767565482176, guid: 4eb6688f6adac5945a058713028882de, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: -89.982
+      objectReference: {fileID: 0}
+    - target: {fileID: 2561344526488795239, guid: 9f1e5409b66fc7d49824ee6cf8f7b148, type: 3}
+      propertyPath: m_brainInput.barDanceLocation
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 2561344526488795239, guid: 9f1e5409b66fc7d49824ee6cf8f7b148, type: 3}
+      propertyPath: m_brainInput.barCounterLocation
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 2561344526488795239, guid: 9f1e5409b66fc7d49824ee6cf8f7b148, type: 3}
+      propertyPath: m_brainInput.rowdinessBehaviour
+      value: 0.699
+      objectReference: {fileID: 0}
+    - target: {fileID: 2561344526488795239, guid: 9f1e5409b66fc7d49824ee6cf8f7b148, type: 3}
+      propertyPath: m_brainInput.barEntranceLocation
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 2561344526488795239, guid: 9f1e5409b66fc7d49824ee6cf8f7b148, type: 3}
+      propertyPath: m_brainInput.reachedEntranceTreashold
+      value: 2.22
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4eb6688f6adac5945a058713028882de, type: 3}
@@ -10694,7 +10756,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 2929967066289668701}
-  m_RootOrder: 2
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2929967065330087106
 GameObject:
@@ -10725,7 +10787,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 2929967066289668701}
-  m_RootOrder: 6
+  m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &2929967065410424888
 Transform:
@@ -10740,7 +10802,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 2929967066289668701}
-  m_RootOrder: 5
+  m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2929967065410424891
 GameObject:
@@ -10787,7 +10849,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 2929967066289668701}
-  m_RootOrder: 4
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &2929967066103946624
 Transform:
@@ -10803,7 +10865,7 @@ Transform:
   m_Children:
   - {fileID: 2929967066163356566}
   m_Father: {fileID: 2929967066289668701}
-  m_RootOrder: 7
+  m_RootOrder: 9
   m_LocalEulerAnglesHint: {x: 0, y: 180, z: 0}
 --- !u!1 &2929967066103946626
 GameObject:
@@ -10900,7 +10962,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 2929967066289668701}
-  m_RootOrder: 1
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2929967066289668700
 GameObject:
@@ -10931,10 +10993,12 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 2929967066456924660}
+  - {fileID: 450369633}
   - {fileID: 2929967066171730639}
   - {fileID: 2929967064590527294}
   - {fileID: 2929967066381652422}
   - {fileID: 2929967065914927841}
+  - {fileID: 1299151597}
   - {fileID: 2929967065410424888}
   - {fileID: 2929967065330087107}
   - {fileID: 2929967066103946624}
@@ -10954,7 +11018,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 2929967066289668701}
-  m_RootOrder: 3
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2929967066381652425
 GameObject:
@@ -11000,6 +11064,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_AllNPCs: []
+  m_globalReduceRowdyUtility: 0.5
+  m_globalIncRowdyUtility: 0.5
   m_NPCWaitInQuene: []
   m_numOfQueneLocationSlot: 5
   queneMainEntrance: {fileID: 2929967064590527294}
@@ -11019,9 +11085,26 @@ MonoBehaviour:
     postCenterDebugColour: {r: 1, g: 0, b: 0, a: 1}
     useWireGizmos: 0
     postRadius: 0.2
+  m_barUtility:
+    m_AllNpcs: []
+    m_NpcAtEntrance: []
+    m_NpcAtDrinkStation: []
+    m_NpcOnDanceFloor: []
+    m_entranceRowdiness: 0
+    m_danceFloorRowdiness: 0
+    m_drinkStationRowdiness: 0
+    m_barRodiness: 0
+    d_entranceRowdiness: 0.616
+    d_danceFloorRowdiness: 0
+    d_drinkStationRowdiness: 0
+    entrance: {fileID: 2929967066171730639}
+    drinkStation: {fileID: 2929967066381652422}
+    danceFloor: {fileID: 2929967065410424888}
+    barCenter: {fileID: 450369633}
   m_NPCDrinkWaiting: []
   m_numDrinkWaitSlots: 7
   drinkStartWait: {fileID: 2929967065914927841}
+  barTenderPos: {fileID: 1299151597}
   drinkWaitOffset: 1.79
   drinkWaitStartDir: {x: 0, y: 0, z: 1}
   lengthForNextDir: 6.67

@@ -18,6 +18,18 @@ public class NPC_BarManager : MonoBehaviour
 
     [Header("General")]
     [SerializeField] private List<NPC> m_AllNPCs;
+    [SerializeField, Range(0.0f, 0.5f)] private float m_globalReduceRowdyUtility = 0.5f;
+    [SerializeField, Range(0.0f, 0.5f)] private float m_globalIncRowdyUtility = 0.5f;
+
+    public float GlobalReduceRowdyUtil
+    {
+        get { return m_globalReduceRowdyUtility;}
+    }
+
+    public float GlobalIncRowdyUtil
+    {
+        get { return m_globalIncRowdyUtility; }
+    }
 
     [Header("Entrance Quene")]
     [SerializeField] private List<NPC> m_NPCWaitInQuene;
@@ -29,9 +41,17 @@ public class NPC_BarManager : MonoBehaviour
     [Header("Dance EQS system")]
     [SerializeField] private DanceFloorEQS m_danceFloorEQS;
 
+    [Header("Bot Bar Rowdy Utilities")]
+    [SerializeField] private BarUtility m_barUtility;
+
     public DanceFloorEQS GetDanceEQS
     {
         get { return m_danceFloorEQS; }
+    }
+
+    public BarUtility GetBarUtility
+    {
+        get { return m_barUtility; }
     }
 
     [Space]
@@ -40,6 +60,13 @@ public class NPC_BarManager : MonoBehaviour
     [SerializeField] private List<DrinkSlot> m_NPCDrinkWaiting = new List<DrinkSlot>();
     [SerializeField, Range(0, 20)] private int m_numDrinkWaitSlots;
     [SerializeField] private Transform drinkStartWait;
+    [SerializeField] private Transform barTenderPos;
+
+    public Vector3 GetCurrentBarTenderPos
+    {
+        get { return barTenderPos.position; }
+    }
+
     [SerializeField, Range(0.0f, 5.0f)] private float drinkWaitOffset;
     [SerializeField] private Vector3 drinkWaitStartDir = Vector3.right;
     [SerializeField, Range(0.0f, 20.0f)] private float lengthForNextDir = 5.0f;
@@ -66,6 +93,8 @@ public class NPC_BarManager : MonoBehaviour
     private void Start()
     {
         m_danceFloorEQS.StartModule();
+        m_barUtility.OnStartModule();
+        m_danceFloorEQS.AssignBarUtility(m_barUtility);
         UpdateDrinkSlotStation();
     }
 
@@ -93,6 +122,8 @@ public class NPC_BarManager : MonoBehaviour
 
         if (updateSlotSystem)
             UpdateDrinkSlotStation();
+
+        m_barUtility.OnUpdateModule();
     }
 
     #region Entrance Manager
@@ -131,6 +162,7 @@ public class NPC_BarManager : MonoBehaviour
         {
             m_NPCWaitInQuene.Add(npc);
             LastPosQueneEntrance();
+            m_barUtility.UpdateNPCAtEntrance(npc);
         }
     }
 
@@ -141,6 +173,7 @@ public class NPC_BarManager : MonoBehaviour
         {
             m_NPCWaitInQuene.Remove(npc);
             LastPosQueneEntrance();
+            m_barUtility.UpdateNPCAtEntrance(npc);
         }
     }
 
@@ -195,6 +228,7 @@ public class NPC_BarManager : MonoBehaviour
 
                 //drinkSlot = m_NPCDrinkWaiting[i];
                 //m_NPCDrinkWaiting[i].inUse = true;
+                m_barUtility.UpdateDrinkStation(slot.user);
                 return true;
             }
         }
@@ -213,6 +247,7 @@ public class NPC_BarManager : MonoBehaviour
                 slot.position = m_NPCDrinkWaiting[i].position;
                 //slot.user = null;
                 m_NPCDrinkWaiting[i] = slot;
+                m_barUtility.UpdateDrinkStation(slot.user) ;
                 return;
             }
         }
@@ -256,6 +291,7 @@ public class NPC_BarManager : MonoBehaviour
     private void OnDrawGizmos()
     {
         m_danceFloorEQS.DrawDebugger();
+        m_barUtility.OnDebugGizmos();
 
         if (queneMainEntrance == null)
             return;

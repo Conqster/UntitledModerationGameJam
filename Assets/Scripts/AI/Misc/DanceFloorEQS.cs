@@ -31,7 +31,7 @@ public class DanceFloorEQS
         get { return centerLocation.position; }
     }
 
-
+    private BarUtility m_barUtility;
 
     [Header("Dev Debugger")]
     [SerializeField] private Color postDebugColour = Color.blue;
@@ -39,6 +39,11 @@ public class DanceFloorEQS
     [SerializeField] private bool useWireGizmos = false;
     [SerializeField, Range(0.0f, 1.0f)] private float postRadius = 0.2f;
 
+
+    public void AssignBarUtility(BarUtility barUtility)
+    {
+        m_barUtility = barUtility;
+    }
 
     public bool QueryAPost(NPC requester, out Vector3 position)
     {
@@ -54,6 +59,8 @@ public class DanceFloorEQS
         position = EQSPost[numOfPostGivenOut++];
         NpcsUsingAPost.Add(requester);
 
+        m_barUtility.UpdateNPCsOnDance(requester);
+
         return true;
     }
 
@@ -65,6 +72,7 @@ public class DanceFloorEQS
             //manually adjust the other npcs
             //UnityEngine.MonoBehaviour.Invoke("UpdateNPCsUsingEQS", 1.0f);
             //Invoke("UpdateNPCsUsingEQS", 1.0f);
+            m_barUtility.UpdateNPCsOnDance(npc);
             UpdateNPCsUsingEQS();
         }
     }

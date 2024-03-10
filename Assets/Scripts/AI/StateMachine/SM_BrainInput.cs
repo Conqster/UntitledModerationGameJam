@@ -18,6 +18,8 @@ public class SM_BrainInput
 
     [Header("Behaviour")]
     [SerializeField, Range(0.0f, 1.0f)] public float rowdinessBehaviour;
+    [SerializeField, Range(0.0f, 1.0f)] public float rowdinessTendency;
+    [SerializeField] public RowdyUtility rowdyUtility = new RowdyUtility();
 
     [Header("Idle State")]
     [SerializeField, Range(0f, 5f)] public float waitDuration = 2.0f;

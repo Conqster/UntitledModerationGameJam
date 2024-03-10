@@ -31,7 +31,7 @@ public class TestSpawn : MonoBehaviour
             testValue = rate;
 
             //Test test for drinking waiting
-            rate = 1.0f;
+            //rate = 1.0f;
 
             if (spawnObj.TryGetComponent<NPC>(out NPC npc))
                 npc.UpdateRowdiness(rate);

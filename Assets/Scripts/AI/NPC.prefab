@@ -272,14 +272,24 @@ MonoBehaviour:
     barCounterLocation: {fileID: 0}
     barDanceLocation: {fileID: 0}
     rowdinessBehaviour: 0.675
+    rowdinessTendency: 0.971
     waitDuration: 2
     reachedEntranceTreashold: 2
     StopOnReachTreshold: 1
+    myDrinkSlot:
+      inUse: 0
+      position: {x: 0, y: 0, z: 0}
+      user: {fileID: 0}
+    danceFloorTreshold: 5
   m_brainOutput:
     barAccessState: 0
+    gettingDrinkState: 0
+    danceFloorState: 0
   SMData:
     stateName: 
     stateEvent: 0
     stateDuration: 0
     state: 0
     barAccessState: 0
+    gettingDrinkState: 0
+    dancingState: 0
