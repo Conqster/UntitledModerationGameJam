@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.AI;
 
 public enum SM_Event
 {
@@ -14,8 +15,38 @@ public enum SM_Event
 public enum SM_State
 {
     Idle,
-    MoveTo,
-    WaitInQuene
+    MoveToEntrance,
+    ApproachingDanceFloor,
+    ApproachingCounter
+    //MoveTo,
+    //WaitInQuene
+}
+
+public enum SM_BarAccessState
+{
+    Neutral,
+    WaitInQuene,
+    Granted,
+    Declined
+}
+
+public enum SM_GettingDrinkState
+{
+    //None,
+    Neutral, 
+    HaveASlot,
+    WaitingForDrink,
+    GotADrink,
+}
+
+public enum SM_DanceFloorState
+{
+    Neutral,
+    Approaching,
+    FindingASpot,
+    ApproachingSpot,
+    DancingInSpot
+    //I can have extra state, that could then extranally kick Npc out this state 
 }
 
 [System.Serializable]
@@ -25,6 +56,11 @@ public struct StateMachineData
     public SM_Event stateEvent;
     public float stateDuration;
     public SM_State state;
+
+    [Header("Mini-States")]
+    public SM_BarAccessState barAccessState;
+    public SM_GettingDrinkState gettingDrinkState;
+    public SM_DanceFloorState dancingState;
 }
 
 
@@ -39,13 +75,24 @@ public class StateMachine
     protected float sm_duration;
 
     protected SM_State sm_state;
+    protected SM_BarAccessState sm_barAccessState;
+    protected SM_GettingDrinkState sm_gettingDrinkState;
+    protected SM_DanceFloorState sm_dancingState;
+    protected SM_BrainInput sm_input;
+    protected SM_BrainOutput sm_output;
 
 
-    public StateMachine()
+    public StateMachine(SM_BrainInput input, SM_BrainOutput output)
     {
         sm_name = "Base State";
         sm_event = SM_Event.Enter;
         sm_duration = 0.0f;
+        sm_input = input;   
+        sm_output = output;  
+
+        sm_barAccessState = output.barAccessState;
+        sm_gettingDrinkState = output.gettingDrinkState;
+        sm_dancingState = output.danceFloorState;
     }
 
 
@@ -55,6 +102,9 @@ public class StateMachine
         sm_stateData.stateDuration = sm_duration;
         sm_stateData.stateEvent = sm_event;
         sm_stateData.state = sm_state;
+        sm_stateData.barAccessState = sm_barAccessState;
+        sm_stateData.gettingDrinkState = sm_gettingDrinkState;
+        sm_stateData.dancingState = sm_dancingState;
 
 
         switch (sm_event)
@@ -98,7 +148,6 @@ public class StateMachine
 
 
 
-
         if (sm_transitionTriggered)
             return;
 
@@ -127,8 +176,29 @@ public class StateMachine
     public string GetSM_Name() => sm_name;
     public SM_Event GetSM_Event() => sm_event;
 
+    public SM_BarAccessState GetSM_BarAccessState => sm_barAccessState;
+
+    public void ChangeBarAccessState(SM_BarAccessState state) 
+    { 
+        sm_output.barAccessState = state;
+        sm_barAccessState = state; 
+    }
+
+
+
+
     public StateMachineData GetStateMachineData() => sm_stateData;
 
     private StateMachine GetStateMachine() => this;
+
+
+    protected void MoveTo(Vector3 location)
+    {
+        //sm_input.navAgent.Move(location);
+        if(sm_input.navAgent.isStopped)
+            sm_input.navAgent.isStopped = false;
+
+        sm_input.navAgent.SetDestination(location);
+    }
 
 }
