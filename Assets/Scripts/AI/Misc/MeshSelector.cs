@@ -9,7 +9,7 @@ public class MeshSelector : MonoBehaviour
 
     private void Awake()
     {
-       GameObject body = Instantiate(Meshes[Random.Range(0, Meshes.Length)], gameObject.transform.position, Quaternion.identity);
+       GameObject body = Instantiate(Meshes[Random.Range(0, Meshes.Length)], gameObject.transform);
         body.transform.parent = this.transform;
     }
 }

@@ -50,7 +50,7 @@ public class IdHolder : MonoBehaviour
         StartCoroutine(IDCAM.Instance.CaptureScreenshot(transform, (capturedSprite) =>
         {
             // Now you have a sprite ready to be assigned to the canvas viewer
-            AssignSpriteToCanvas(capturedSprite);
+            //AssignSpriteToCanvas(capturedSprite);
         }));
     }
 
@@ -95,15 +95,19 @@ public class IdHolder : MonoBehaviour
 
         if (capturedSprite != null)
         {
-            image = capturedSprite; 
-            if (IDDisplayManager.Instance != null)
+            image = capturedSprite;
+            // Assuming there's a way to get the NPC component or identifier from this IdHolder
+            NPC myNpc = GetComponent<NPC>(); // This is just an example. Adjust based on your actual component structure.
+            if (NPC_BarManager.Instance.IsFirstInQueue(myNpc)) // You need to implement IsFirstInQueue method.
             {
-
-                IDDisplayManager.Instance.SetIDInfo(image, expiryDate, dateOfBirth);
-            }
-            else
-            {
-                Debug.LogError("IDDisplayManager  not found.");
+                if (IDDisplayManager.Instance != null)
+                {
+                    IDDisplayManager.Instance.SetIDInfo(image, expiryDate, dateOfBirth);
+                }
+                else
+                {
+                    Debug.LogError("IDDisplayManager not found.");
+                }
             }
         }
         else

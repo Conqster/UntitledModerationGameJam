@@ -218,7 +218,12 @@ public class NPC_BarManager : MonoBehaviour
         }
 
     }
-
+    public bool IsFirstInQueue(NPC npc)
+    {
+        bool isFirst = m_NPCWaitInQuene.Count > 0 && m_NPCWaitInQuene[0] == npc;
+        Debug.Log($"Checking if NPC is first in queue: {npc.name} - Is First: {isFirst}");
+        return isFirst;
+    }
     public void UpdateDrinkSlotStation()
     {
         m_NPCDrinkWaiting.Clear();
