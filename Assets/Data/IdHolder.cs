@@ -12,7 +12,7 @@ public class IdHolder : MonoBehaviour
     {
         
         float rand = Random.value;
-        if (rand <= 0.80)
+        if (rand <= 0.6)
         {
             realID();
         }

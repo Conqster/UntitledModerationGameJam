@@ -104,6 +104,7 @@ public class NPC_BarManager : MonoBehaviour
         {
             m_NPCWaitInQuene[0].GrantAccessToBar();
             UpdateNPCsPos();
+            UpdateFirstNPCDisplay();
         }
     }
 
@@ -113,6 +114,7 @@ public class NPC_BarManager : MonoBehaviour
         {
             m_NPCWaitInQuene[0].DeclineAccessToBar();
             UpdateNPCsPos();
+            UpdateFirstNPCDisplay();
         }
     }
 
@@ -140,9 +142,10 @@ public class NPC_BarManager : MonoBehaviour
     {
         if (m_NPCWaitInQuene.Contains(npc))
         {
+            UpdateFirstNPCDisplay();
             m_NPCWaitInQuene.Remove(npc);
             LastPosQueneEntrance();
-            UpdateFirstNPCDisplay();
+            
         }
     }
 
@@ -313,12 +316,14 @@ public class NPC_BarManager : MonoBehaviour
     {
         if (m_NPCWaitInQuene.Count > 0)
         {
+            
             NPC firstNPC = m_NPCWaitInQuene[0];
             IdHolder idHolder = firstNPC.GetComponent<IdHolder>();
             if (idHolder != null)
             {   
                 if(idHolder.image != null)
-                // Assuming IDDisplayManager has a method to update the display
+                    // Assuming IDDisplayManager has a method to update the display
+                IDDisplayManager.Instance.ClearIDInfo();
                 IDDisplayManager.Instance.SetIDInfo(idHolder.image, idHolder.expiryDate, idHolder.dateOfBirth);
             }
         }
