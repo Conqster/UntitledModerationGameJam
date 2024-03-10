@@ -2,11 +2,15 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using System;
+using UnityEngine.Audio;
 
 public class AudioManager : MonoBehaviour
 {
     public static AudioManager Instance {get; private set;}
     [SerializeField] Sound[] sounds;
+    [SerializeField] AudioMixer audioMixer;
+    [SerializeField] AudioMixerGroup musicAudioMixerGroup;
+    [SerializeField] AudioMixerGroup SoundEffectsAudioMixerGroup;
 
     float musicVolumeMultiplier = 1f;
     float sfxVolumeMultiplier = 1f;
@@ -37,15 +41,17 @@ public class AudioManager : MonoBehaviour
                 s.source = gameObject.AddComponent<AudioSource>();
 
             s.source.clip = s.clip;
-            s.source.pitch = s.pitch;
+            //s.source.pitch = s.pitch;
 
             if (s.music)
             {
-                s.source.volume = s.volume * musicVolumeMultiplier;
+                //s.source.volume = s.volume * musicVolumeMultiplier;
+                s.source.outputAudioMixerGroup = musicAudioMixerGroup;
             }
             else
             {
-                s.source.volume = s.volume * sfxVolumeMultiplier;
+                //s.source.volume = s.volume * sfxVolumeMultiplier;
+                s.source.outputAudioMixerGroup = SoundEffectsAudioMixerGroup;
             }
 
             s.source.loop = s.loop;
@@ -58,7 +64,9 @@ public class AudioManager : MonoBehaviour
         musicVolumeMultiplier = musicVolume;
         sfxVolumeMultiplier = sfxVolume;
 
-        InitialiseAudio();
+        audioMixer.SetFloat("Music Volume", musicVolume);
+        audioMixer.SetFloat("Sound Effects Volume", sfxVolume);
+
     }
 
     public static void PlaySound(string name)
