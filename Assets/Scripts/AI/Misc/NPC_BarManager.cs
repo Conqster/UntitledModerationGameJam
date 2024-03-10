@@ -112,9 +112,10 @@ public class NPC_BarManager : MonoBehaviour
     {
         if (m_NPCWaitInQuene.Count > 0)
         {
+            UpdateFirstNPCDisplay();
             m_NPCWaitInQuene[0].DeclineAccessToBar();
             UpdateNPCsPos();
-            UpdateFirstNPCDisplay();
+            
         }
     }
 
