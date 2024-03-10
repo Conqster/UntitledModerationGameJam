@@ -26,7 +26,7 @@ RenderSettings:
   m_AmbientIntensity: 1
   m_AmbientMode: 0
   m_SubtractiveShadowColor: {r: 0.42, g: 0.478, b: 0.627, a: 1}
-  m_SkyboxMaterial: {fileID: 10304, guid: 0000000000000000f000000000000000, type: 0}
+  m_SkyboxMaterial: {fileID: 2100000, guid: dacda8b985a6dc74cb872e3bd4616b5a, type: 2}
   m_HaloStrength: 0.5
   m_FlareStrength: 1
   m_FlareFadeSpeed: 3
@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 705507994}
-  m_IndirectSpecularColor: {r: 0.44657898, g: 0.4964133, b: 0.5748178, a: 1}
+  m_IndirectSpecularColor: {r: 0.10205827, g: 0.13745385, b: 0.287068, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -5500,11 +5500,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5380924824170086890, guid: b05133696dff7214784bf321ec6cbcd7, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -0.0004320744
+      value: -0.00043
       objectReference: {fileID: 0}
     - target: {fileID: 5380924824170086890, guid: b05133696dff7214784bf321ec6cbcd7, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0.0044055074
+      value: 0.00457
       objectReference: {fileID: 0}
     - target: {fileID: 5380924824170086890, guid: b05133696dff7214784bf321ec6cbcd7, type: 3}
       propertyPath: m_LocalRotation.w
@@ -7279,6 +7279,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2697001250727753411}
+  - component: {fileID: 2697001250727753412}
   m_Layer: 0
   m_Name: Environment
   m_TagString: Untagged
@@ -7802,6 +7803,19 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!65 &2697001250727753412
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1411844646500814479}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 11.035534, y: 6.067561, z: 2.4306602}
+  m_Center: {x: -0.6639347, y: 4.5762935, z: 6.894291}
 --- !u!1 &2716765786124778919
 GameObject:
   m_ObjectHideFlags: 0
@@ -9081,7 +9095,7 @@ Light:
   m_Shape: 0
   m_Color: {r: 0.2971698, g: 0.97275984, b: 1, a: 1}
   m_Intensity: 1
-  m_Range: 10
+  m_Range: 114.03
   m_SpotAngle: 30
   m_InnerSpotAngle: 21.80208
   m_CookieSize: 10
