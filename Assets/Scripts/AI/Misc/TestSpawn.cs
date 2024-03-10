@@ -24,6 +24,7 @@ public class TestSpawn : MonoBehaviour
         while (m_SpawnCount < m_MaxSpawnCount)
         {
             GameObject spawnObj = Instantiate(m_SpawnObject, m_SpawnTransform.position,/* Quaternion.identity*/ m_SpawnTransform.rotation, transform);
+            spawnObj.AddComponent<IdHolder>();
 
             float rate = (testValue == 0) ? 1 : 0;
 
