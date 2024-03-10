@@ -8,6 +8,9 @@ public class PlayerMovement : MonoBehaviour
     public float speed = 12f;
     public float gravity = -9.81f;
     Vector3 velocity;
+
+    public Rigidbody beverageObject;
+    [SerializeField] float throwForce = 200f;
    
     private void Start()
     {
@@ -25,6 +28,22 @@ public class PlayerMovement : MonoBehaviour
 
         controller.Move(velocity * Time.deltaTime);
 
+        
+    }
 
+    private void Update()
+    {
+        if(Input.GetMouseButtonDown(0))
+        {
+            if(beverageObject != null)
+            {
+                beverageObject.useGravity = true;
+                beverageObject.isKinematic = false;
+
+                beverageObject.AddForce(transform.forward * throwForce, ForceMode.Impulse);
+
+                beverageObject = null;
+            }
+        }
     }
 }
