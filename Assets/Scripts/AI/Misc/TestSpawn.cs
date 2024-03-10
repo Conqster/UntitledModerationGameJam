@@ -9,6 +9,7 @@ public class TestSpawn : MonoBehaviour
     [SerializeField, Range(0,10)] private int m_MaxSpawnCount = 2;
     [SerializeField] private int m_SpawnCount = 0;
     [SerializeField] Transform m_SpawnTransform;
+    
 
     public float testValue;
 
