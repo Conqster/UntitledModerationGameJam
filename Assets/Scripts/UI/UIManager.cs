@@ -64,22 +64,22 @@ public class UIManager : MonoBehaviour
         float musicVolume;
         float sfxVolume;
 
-        if(musicToggle.isOn)
+        if(musicToggle.isOn == false)
         {
             musicVolume = musicSlider.value;
         }
         else
         {
-            musicVolume = 0;
+            musicVolume = -80;
         }
 
-        if(sfxToggle.isOn)
+        if(sfxToggle.isOn == false)
         {
             sfxVolume = sfxSlider.value;
         }
         else
         {
-            sfxVolume = 0;
+            sfxVolume = -80;
         }
 
         OnAudioUpdatedEvent?.Invoke(musicVolume, sfxVolume);

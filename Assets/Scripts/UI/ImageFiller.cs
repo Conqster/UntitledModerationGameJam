@@ -7,8 +7,8 @@ using UnityEngine.UI;
 public class ImageFiller : MonoBehaviour
 {
     [SerializeField] Gradient colourGradient;
-    [SerializeField] float fillAmount;
-    [SerializeField] bool inverse = false;
+    //[SerializeField] float fillAmount;
+    //[SerializeField] bool inverse = false;
     Image image;
 
     private void Awake()
@@ -28,8 +28,8 @@ public class ImageFiller : MonoBehaviour
         image.color = colourGradient.Evaluate(fillAmount);
     }
 
-    private void Update()
-    {
-        UpdateFill(fillAmount, inverse);
-    }
+    //private void Update()
+    //{
+    //    UpdateFill(fillAmount, inverse);
+    //}
 }
