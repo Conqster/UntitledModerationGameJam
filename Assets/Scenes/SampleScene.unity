@@ -147,12 +147,43 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 355083125}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -6.31, y: 0, z: 6.44}
+  m_LocalPosition: {x: -5.67, y: 0, z: 7.77}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1099034899}
   m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &417073036
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 417073037}
+  m_Layer: 0
+  m_Name: CenterLocation
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &417073037
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 417073036}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -5.69, y: 0.16000009, z: 7.7900004}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1099034899}
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &617142383
 GameObject:
@@ -183,7 +214,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1099034899}
-  m_RootOrder: 4
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &705507993
 GameObject:
@@ -416,7 +447,9 @@ Transform:
   - {fileID: 355083126}
   - {fileID: 1594778248}
   - {fileID: 1535759034}
+  - {fileID: 417073037}
   - {fileID: 617142384}
+  - {fileID: 2067274159}
   m_Father: {fileID: 0}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -430,7 +463,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1242124504}
   m_Layer: 0
-  m_Name: GameObject
+  m_Name: Spawn Location/Rot
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -515,7 +548,7 @@ MonoBehaviour:
   m_SpawnInterval: 2.94
   m_MaxSpawnCount: 10
   m_SpawnCount: 0
-  m_SpawnLocation: {fileID: 1242124504}
+  m_SpawnTransform: {fileID: 1242124504}
   testValue: 0
 --- !u!4 &1324609230
 Transform:
@@ -524,7 +557,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1324609228}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: 0, y: 1, z: 0, w: 0}
   m_LocalPosition: {x: 3.58, y: 2.61, z: -0.11}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -532,7 +565,7 @@ Transform:
   - {fileID: 1242124504}
   m_Father: {fileID: 0}
   m_RootOrder: 5
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 180, z: 0}
 --- !u!1 &1535759033
 GameObject:
   m_ObjectHideFlags: 0
@@ -558,7 +591,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1535759033}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -25.250729, y: -2.371981, z: 16.841862}
+  m_LocalPosition: {x: -15.37, y: -2.371981, z: 16.841862}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -583,6 +616,28 @@ MonoBehaviour:
   queneMainEntrance: {fileID: 617142384}
   queneDirection: {x: 0, y: 0, z: 1}
   queneOffset: 1.68
+  m_danceFloorEQS:
+    EQSPost: []
+    NpcsUsingAPost: []
+    numOfPostGivenOut: 0
+    systemRunning: 0
+    reloadEQS: 0
+    numOfCardinalPoints: 4
+    numOfRings: 3
+    distanceBtwRings: 1.31
+    centerLocation: {fileID: 417073037}
+    postDebugColour: {r: 0, g: 0, b: 1, a: 1}
+    postCenterDebugColour: {r: 1, g: 0, b: 0, a: 1}
+    useWireGizmos: 0
+    postRadius: 0.2
+  m_NPCDrinkWaiting: []
+  m_numDrinkWaitSlots: 5
+  drinkStartWait: {fileID: 2067274159}
+  drinkWaitOffset: 1.92
+  drinkWaitStartDir: {x: 1, y: 0, z: 0}
+  lengthForNextDir: 5
+  drinkWaitNextDir: {x: 0, y: 0, z: 1}
+  updateSlotSystem: 0
   alwayUseLastQuene: 1
 --- !u!1 &1594778247
 GameObject:
@@ -622,6 +677,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1348628937893226033, guid: 95c50deff53921a439f4812332bb1085, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 31.77
+      objectReference: {fileID: 0}
     - target: {fileID: 1411844646098007970, guid: 95c50deff53921a439f4812332bb1085, type: 3}
       propertyPath: m_Name
       value: Environment
@@ -670,12 +729,47 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4831943546124000900, guid: 95c50deff53921a439f4812332bb1085, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -22.78
+      objectReference: {fileID: 0}
     - target: {fileID: 8095628746881106621, guid: 95c50deff53921a439f4812332bb1085, type: 3}
       propertyPath: m_StaticEditorFlags
       value: 8
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 95c50deff53921a439f4812332bb1085, type: 3}
+--- !u!1 &2067274158
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2067274159}
+  m_Layer: 0
+  m_Name: DrinkWaitStart
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2067274159
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2067274158}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -14.695, y: 0, z: -1.902}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1099034899}
+  m_RootOrder: 6
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &2561344526040137603
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -743,6 +837,10 @@ PrefabInstance:
       propertyPath: m_brainInput.barCounterLocation
       value: 
       objectReference: {fileID: 1594778248}
+    - target: {fileID: 2561344526488795239, guid: 9f1e5409b66fc7d49824ee6cf8f7b148, type: 3}
+      propertyPath: m_brainInput.danceFloorTreshold
+      value: 5.07
+      objectReference: {fileID: 0}
     - target: {fileID: 2561344526488795239, guid: 9f1e5409b66fc7d49824ee6cf8f7b148, type: 3}
       propertyPath: m_brainInput.rowdinessBehaviour
       value: 0.699

@@ -8,7 +8,7 @@ public class TestSpawn : MonoBehaviour
     [SerializeField, Range(0.5f, 5.0f)] private float m_SpawnInterval = 1.0f;
     [SerializeField, Range(0,10)] private int m_MaxSpawnCount = 2;
     [SerializeField] private int m_SpawnCount = 0;
-    [SerializeField] Transform m_SpawnLocation;
+    [SerializeField] Transform m_SpawnTransform;
 
     public float testValue;
 
@@ -23,11 +23,14 @@ public class TestSpawn : MonoBehaviour
     {
         while (m_SpawnCount < m_MaxSpawnCount)
         {
-            GameObject spawnObj = Instantiate(m_SpawnObject, m_SpawnLocation);
+            GameObject spawnObj = Instantiate(m_SpawnObject, m_SpawnTransform.position,/* Quaternion.identity*/ m_SpawnTransform.rotation, transform);
 
             float rate = (testValue == 0) ? 1 : 0;
 
             testValue = rate;
+
+            //Test test for drinking waiting
+            rate = 1.0f;
 
             if (spawnObj.TryGetComponent<NPC>(out NPC npc))
                 npc.UpdateRowdiness(rate);

@@ -26,6 +26,12 @@ public class SM_BrainInput
     [SerializeField, Range(0.0f, 5.0f)] public float reachedEntranceTreashold = 2.0f;
     [SerializeField] public bool StopOnReachTreshold = false;
 
+    [Header("Getting Drinks")]
+    [SerializeField] public DrinkSlot myDrinkSlot;
+
+    [Header("Dance Floor")]
+    [SerializeField, Range(0.0f, 10.0f)] public float danceFloorTreshold = 5.0f;
+
 
 
 }
@@ -36,4 +42,6 @@ public class SM_BrainOutput
 {
     [Header("General")]
     [SerializeField] public SM_BarAccessState barAccessState;
+    [SerializeField] public SM_GettingDrinkState gettingDrinkState;
+    [SerializeField] public SM_DanceFloorState danceFloorState;
 }

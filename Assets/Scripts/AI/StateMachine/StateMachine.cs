@@ -30,6 +30,25 @@ public enum SM_BarAccessState
     Declined
 }
 
+public enum SM_GettingDrinkState
+{
+    //None,
+    Neutral, 
+    HaveASlot,
+    WaitingForDrink,
+    GotADrink,
+}
+
+public enum SM_DanceFloorState
+{
+    Neutral,
+    Approaching,
+    FindingASpot,
+    ApproachingSpot,
+    DancingInSpot
+    //I can have extra state, that could then extranally kick Npc out this state 
+}
+
 [System.Serializable]
 public struct StateMachineData
 {
@@ -37,7 +56,11 @@ public struct StateMachineData
     public SM_Event stateEvent;
     public float stateDuration;
     public SM_State state;
+
+    [Header("Mini-States")]
     public SM_BarAccessState barAccessState;
+    public SM_GettingDrinkState gettingDrinkState;
+    public SM_DanceFloorState dancingState;
 }
 
 
@@ -53,6 +76,8 @@ public class StateMachine
 
     protected SM_State sm_state;
     protected SM_BarAccessState sm_barAccessState;
+    protected SM_GettingDrinkState sm_gettingDrinkState;
+    protected SM_DanceFloorState sm_dancingState;
     protected SM_BrainInput sm_input;
     protected SM_BrainOutput sm_output;
 
@@ -66,6 +91,8 @@ public class StateMachine
         sm_output = output;  
 
         sm_barAccessState = output.barAccessState;
+        sm_gettingDrinkState = output.gettingDrinkState;
+        sm_dancingState = output.danceFloorState;
     }
 
 
@@ -76,6 +103,8 @@ public class StateMachine
         sm_stateData.stateEvent = sm_event;
         sm_stateData.state = sm_state;
         sm_stateData.barAccessState = sm_barAccessState;
+        sm_stateData.gettingDrinkState = sm_gettingDrinkState;
+        sm_stateData.dancingState = sm_dancingState;
 
 
         switch (sm_event)
@@ -154,6 +183,8 @@ public class StateMachine
         sm_output.barAccessState = state;
         sm_barAccessState = state; 
     }
+
+
 
 
     public StateMachineData GetStateMachineData() => sm_stateData;

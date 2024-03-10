@@ -39,12 +39,17 @@ public class SM_Idle : StateMachine
                 else
                     TriggerExit(new SM_ApproachCounter(sm_input, sm_output));   
 
+
+
                 break;
             case SM_BarAccessState.Declined: 
 
 
                 break;
         }
+
+
+
 
 
         base.Update();
@@ -55,4 +60,7 @@ public class SM_Idle : StateMachine
     {
         base.Exit();
     }
+
+
+
 }

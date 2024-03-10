@@ -33,6 +33,7 @@ public class NPC : MonoBehaviour
         agent = GetComponent<NavMeshAgent>();
         m_brainInput.npc = this;
         m_brainInput.self = transform;
+        m_brainInput.myDrinkSlot.user = this;
 
         m_brainInput.barEntranceLocation = GameObject.FindGameObjectWithTag("BarEntrance").transform;
         m_brainInput.barCounterLocation = GameObject.FindGameObjectWithTag("BarCounter").transform;
@@ -91,7 +92,9 @@ public class NPC : MonoBehaviour
 
     public void UpdateEntranceBasedOnQuene(Vector3 pos)
     {
-        m_brainInput.barEntranceLocation.position = pos;    
+        m_brainInput.barEntranceLocation.position = pos;
+        //Not Ideal, but it works
+        //UpdateMoveTo(pos);
     }
 
 
@@ -108,11 +111,14 @@ public class NPC : MonoBehaviour
         //Debug Entrance Radius
         if(m_brainInput != null)
         {
+            if (!m_brainInput.barEntranceLocation && !m_brainInput.barDanceLocation && !m_brainInput.barCounterLocation)
+                return;
+
             Gizmos.color = Color.blue;
             Gizmos.DrawWireSphere(m_brainInput.barEntranceLocation.position, m_brainInput.reachedEntranceTreashold);
 
             Gizmos.color = Color.yellow;
-            Gizmos.DrawWireSphere(m_brainInput.barDanceLocation.position, m_brainInput.reachedEntranceTreashold);
+            Gizmos.DrawWireSphere(m_brainInput.barDanceLocation.position, m_brainInput.danceFloorTreshold);
 
             Gizmos.color = Color.magenta;
             Gizmos.DrawWireSphere(m_brainInput.barCounterLocation.position, m_brainInput.reachedEntranceTreashold);
