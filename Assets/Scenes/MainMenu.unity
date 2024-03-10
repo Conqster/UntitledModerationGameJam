@@ -1606,7 +1606,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sounds:
   - name: Test Audio
-    clip: {fileID: 8300000, guid: 9a6fff97b30eaad40904b4e2d201c12b, type: 3}
+    clip: {fileID: 8300000, guid: 0916c93ff8471df478f66f647164f00b, type: 3}
     volume: 1
     pitch: 1
     loop: 1
