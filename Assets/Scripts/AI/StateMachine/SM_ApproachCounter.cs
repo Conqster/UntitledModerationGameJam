@@ -75,6 +75,7 @@ public class SM_ApproachCounter : StateMachine
                 if (NPC_BarManager.Instance != null)
                 {
                     Vector3 target = NPC_BarManager.Instance.GetCurrentBarTenderPos;
+                    target.y = sm_input.self.position.y;
                     sm_input.self.LookAt(target);
                 }
 

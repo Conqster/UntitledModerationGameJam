@@ -18,6 +18,8 @@ public class NPC_BarManager : MonoBehaviour
 
     [Header("General")]
     [SerializeField] private List<NPC> m_AllNPCs;
+    [SerializeField] private Transform player;
+    [SerializeField] private PlayerBarStatus playerBarStatus;
     [SerializeField, Range(0.0f, 0.5f)] private float m_globalReduceRowdyUtility = 0.5f;
     [SerializeField, Range(0.0f, 0.5f)] private float m_globalIncRowdyUtility = 0.5f;
 
@@ -61,6 +63,8 @@ public class NPC_BarManager : MonoBehaviour
     [SerializeField, Range(0, 20)] private int m_numDrinkWaitSlots;
     [SerializeField] private Transform drinkStartWait;
     [SerializeField] private Transform barTenderPos;
+    private Transform captureBarTenderStart;
+    [SerializeField] private bool onlyUpdatePosInBar = true;
 
     public Vector3 GetCurrentBarTenderPos
     {
@@ -92,6 +96,7 @@ public class NPC_BarManager : MonoBehaviour
 
     private void Start()
     {
+        captureBarTenderStart = barTenderPos;
         m_danceFloorEQS.StartModule();
         m_barUtility.OnStartModule();
         m_danceFloorEQS.AssignBarUtility(m_barUtility);
@@ -124,6 +129,25 @@ public class NPC_BarManager : MonoBehaviour
             UpdateDrinkSlotStation();
 
         m_barUtility.OnUpdateModule();
+
+
+
+        if(player != null)
+        {
+            if (!onlyUpdatePosInBar)
+            {
+                barTenderPos.position = player.position;
+            }
+            else
+            {
+                if (playerBarStatus.IsinBar)
+                    barTenderPos.position = player.position;
+                else
+                    barTenderPos.position = captureBarTenderStart.position;
+            }
+               
+            
+        }
     }
 
     #region Entrance Manager
@@ -213,11 +237,14 @@ public class NPC_BarManager : MonoBehaviour
     #endregion
 
 
+
+    #region DrinkStation EQS Module
+
     public bool AddWaitingForDrinks(ref DrinkSlot drinkSlot)
     {
 
-        foreach(DrinkSlot availableSlot in m_NPCDrinkWaiting)
-            if(availableSlot.user == drinkSlot.user)
+        foreach (DrinkSlot availableSlot in m_NPCDrinkWaiting)
+            if (availableSlot.user == drinkSlot.user)
                 return true;
 
 
@@ -244,6 +271,8 @@ public class NPC_BarManager : MonoBehaviour
 
     public void RemoveServedNPC(DrinkSlot drinkSlot)
     {
+        if (!m_NPCDrinkWaiting.Contains(drinkSlot))
+            return;
 
         for (int i = 0; i <= m_NPCDrinkWaiting.Count; i++)
         {
@@ -254,18 +283,13 @@ public class NPC_BarManager : MonoBehaviour
                 slot.position = m_NPCDrinkWaiting[i].position;
                 //slot.user = null;
                 m_NPCDrinkWaiting[i] = slot;
-                m_barUtility.UpdateDrinkStation(slot.user) ;
+                m_barUtility.UpdateDrinkStation(slot.user);
                 return;
             }
         }
 
     }
-    public bool IsFirstInQueue(NPC npc)
-    {
-        bool isFirst = m_NPCWaitInQuene.Count > 0 && m_NPCWaitInQuene[0] == npc;
-        Debug.Log($"Checking if NPC is first in queue: {npc.name} - Is First: {isFirst}");
-        return isFirst;
-    }
+
     public void UpdateDrinkSlotStation()
     {
         m_NPCDrinkWaiting.Clear();
@@ -299,6 +323,18 @@ public class NPC_BarManager : MonoBehaviour
         updateSlotSystem = false;
     }
 
+
+    #endregion
+
+
+
+    public bool IsFirstInQueue(NPC npc)
+    {
+        bool isFirst = m_NPCWaitInQuene.Count > 0 && m_NPCWaitInQuene[0] == npc;
+        Debug.Log($"Checking if NPC is first in queue: {npc.name} - Is First: {isFirst}");
+        return isFirst;
+    }
+  
 
     private void OnDrawGizmos()
     {
