@@ -77,6 +77,9 @@ public class NPC : MonoBehaviour
     /// </summary>
     public void DeclineAccessToBar()
     {
+        if (NPC_BarManager.Instance != null)
+            NPC_BarManager.Instance.RemoveFromQuene(this);
+
         Destroy(this.gameObject);
     }
 

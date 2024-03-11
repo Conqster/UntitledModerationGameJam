@@ -8,11 +8,11 @@ public class IdHolder : MonoBehaviour
 
    
 
-    private void Awake()
+    private void Start()
     {
         
         float rand = Random.value;
-        if (rand <= 0.80)
+        if (rand <= 0.6)
         {
             realID();
         }
@@ -24,13 +24,14 @@ public class IdHolder : MonoBehaviour
 
     void realID()
     {
+        TakePictureOfNPC();
         // Assign real values
         expiryDate = GenerateRealExpiryDate();
         dateOfBirth = GenerateRealDateOfBirth();
 
         Debug.Log($"Real ID Created - Expiry Date: {expiryDate}, Date of Birth: {dateOfBirth}, Image will be assigned after capture");
 
-        TakePictureOfNPC();
+        
     }
 
     void fakeId()
@@ -91,24 +92,7 @@ public class IdHolder : MonoBehaviour
 
     void AssignSpriteToCanvas(Sprite capturedSprite)
     {
-        Debug.Log($"Received sprite: {capturedSprite}");
-
-        if (capturedSprite != null)
-        {
-            image = capturedSprite; // Assign the captured sprite to the 'image' field.
-            if (IDDisplayManager.Instance != null)
-            {
-                // Now setting the sprite on the Image component in the IDDisplayManager
-                IDDisplayManager.Instance.SetIDInfo(image, expiryDate, dateOfBirth);
-            }
-            else
-            {
-                Debug.LogError("IDDisplayManager instance not found.");
-            }
-        }
-        else
-        {
-            Debug.LogError("Captured sprite is null.");
-        }
+        image = capturedSprite;
+        NPC_BarManager.Instance.UpdateNPCsPos();
     }
 }

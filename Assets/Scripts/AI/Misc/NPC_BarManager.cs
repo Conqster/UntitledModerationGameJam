@@ -135,6 +135,7 @@ public class NPC_BarManager : MonoBehaviour
         {
             m_NPCWaitInQuene[0].GrantAccessToBar();
             UpdateNPCsPos();
+            UpdateFirstNPCDisplay();
         }
     }
 
@@ -142,8 +143,10 @@ public class NPC_BarManager : MonoBehaviour
     {
         if (m_NPCWaitInQuene.Count > 0)
         {
+            UpdateFirstNPCDisplay();
             m_NPCWaitInQuene[0].DeclineAccessToBar();
             UpdateNPCsPos();
+            
         }
     }
 
@@ -163,6 +166,7 @@ public class NPC_BarManager : MonoBehaviour
             m_NPCWaitInQuene.Add(npc);
             LastPosQueneEntrance();
             m_barUtility.UpdateNPCAtEntrance(npc);
+            UpdateFirstNPCDisplay();
         }
     }
 
@@ -171,9 +175,11 @@ public class NPC_BarManager : MonoBehaviour
     {
         if (m_NPCWaitInQuene.Contains(npc))
         {
+            UpdateFirstNPCDisplay();
             m_NPCWaitInQuene.Remove(npc);
             LastPosQueneEntrance();
             m_barUtility.UpdateNPCAtEntrance(npc);
+            
         }
     }
 
@@ -185,11 +191,12 @@ public class NPC_BarManager : MonoBehaviour
     }
 
 
-    private void UpdateNPCsPos()
+    public void UpdateNPCsPos()
     {
+        UpdateFirstNPCDisplay();
         if (m_NPCWaitInQuene.Count <= 0)
             return;
-
+        
         for (int i = 0; i < m_NPCWaitInQuene.Count; ++i)
         {
             if (i > m_numOfQueneLocationSlot)
@@ -253,7 +260,12 @@ public class NPC_BarManager : MonoBehaviour
         }
 
     }
-
+    public bool IsFirstInQueue(NPC npc)
+    {
+        bool isFirst = m_NPCWaitInQuene.Count > 0 && m_NPCWaitInQuene[0] == npc;
+        Debug.Log($"Checking if NPC is first in queue: {npc.name} - Is First: {isFirst}");
+        return isFirst;
+    }
     public void UpdateDrinkSlotStation()
     {
         m_NPCDrinkWaiting.Clear();
@@ -337,5 +349,25 @@ public class NPC_BarManager : MonoBehaviour
 
     }
 
-
+    public void UpdateFirstNPCDisplay()
+    {
+        if (m_NPCWaitInQuene.Count > 0)
+        {
+            
+            NPC firstNPC = m_NPCWaitInQuene[0];
+            IdHolder idHolder = firstNPC.GetComponent<IdHolder>();
+            if (idHolder != null)
+            {   
+                if(idHolder.image != null)
+                    // Assuming IDDisplayManager has a method to update the display
+                IDDisplayManager.Instance.ClearIDInfo();
+                IDDisplayManager.Instance.SetIDInfo(idHolder.image, idHolder.expiryDate, idHolder.dateOfBirth);
+            }
+        }
+        else
+        {
+            // Clear the display if no NPCs are in the queue
+            IDDisplayManager.Instance.ClearIDInfo();
+        }
+    }
 }
